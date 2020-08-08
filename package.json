@@ -1,7 +1,7 @@
 {
-  "name": "PokemonApp",
+  "name": "hoc-vs-hooks",
   "version": "1.0.0",
-  "description": "Application created to test the module mock feature of Jest",
+  "description": "Application created to write higher order components",
   "main": "index.js",
   "jest": {
     "setupFiles": [

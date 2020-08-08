@@ -1,28 +1,49 @@
-import React from 'react';
-import Async from '../utilities/Async';
+import React, { useState } from 'react';
+import withScreenSize from '../designPatterns/withScreenSize';
+import useScreenSize from '../designPatterns/useScreenSize';
+import ScreenSizeRP from '../designPatterns/ScreenSizeRP';
 
-class Home extends React.Component {
-  static *asyncGenerator() {
-    const response = yield fetch('https://pokeapi.co/api/v2/pokemon');
-    const json = yield response.json();
+// HOC!
 
-    return json;
-  };
-  
-  componentDidMount() {
-    const getData = Async(Home.asyncGenerator);
+const Home = props => {
+  console.log(props);
+  return (
+    <>
+      <h1>Width: {props.width}</h1>
+      <h1>Height: {props.height}</h1>
+    </>
+  );
+};
 
-    console.log(getData().then(d => console.log(d)));
-  }
+export default withScreenSize(Home);
 
-  render() {
-    return (
-      <>
-        <h1>WELCOME HOME</h1>
-      </>
-    );
-  }
-}
+// HOOKS!
 
-export default Home;
+// const Home = () => {
+//   const [size, setSize] = useScreenSize();
+//
+//   return (
+//     <>
+//       <h1>Width: {size.width}</h1>
+//       <h1>Height: {size.height}</h1>
+//     </>
+//   );
+// };
+//
+// export default Home;
 
+
+// RENDER PROPS!
+
+// const Home = props => {
+//   return (
+//     <ScreenSizeRP render={(width, height) => (
+//       <>
+//         <h1>Width: {width}</h1>
+//         <h1>Height: {height}</h1>
+//       </>
+//     )} />
+//   );
+// };
+//
+// export default withScreenSize(Home);
